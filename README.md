@@ -2,8 +2,6 @@
 Name: Thi Nguyen
 CCID: thi2
 
-Name: Thi Nguyen
-CCID: thi2
 
 ## References and Resources
 
