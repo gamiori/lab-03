@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
     }
 
     @Override
+    public void editCity(City city) {
+        cityAdapter.notifyDataSetChanged();;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -44,10 +49,16 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.A
         cityList = findViewById(R.id.city_list);
         cityAdapter = new CityArrayAdapter(this, dataList);
         cityList.setAdapter(cityAdapter);
+        cityList.setOnItemClickListener((parent, view, position, id) -> {
+            City cityToEdit = dataList.get(position);
+            AddCityFragment.newInstance(cityToEdit).show(getSupportFragmentManager(), "Add/Edit City");
+        });
 
         FloatingActionButton fab = findViewById(R.id.button_add_city);
         fab.setOnClickListener(v -> {
-            new AddCityFragment().show(getSupportFragmentManager(), "Add City");
+            new AddCityFragment().newInstance(null).show(getSupportFragmentManager(), "Add/Edit City");
         });
+
+
     }
 }
